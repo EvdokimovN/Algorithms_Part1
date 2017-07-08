@@ -8,7 +8,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     private Item[] items;
     private int N;
 
-    @SuppressWarnings("unchecked")
     public RandomizedQueue() {
         // This is unsafe from Java type system perspective. However in
         // our case consumer will interact with the array through predefined API
@@ -34,7 +33,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     public void enqueue(Item item) {
         if (item == null)
-            throw new NullPointerException("attemp to enqueue null item");
+            throw new IllegalArgumentException("attempt to enqueue null item");
         // Make sure there is space to insert new item
         if (N == items.length)
             resize(2 * items.length);
@@ -49,7 +48,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     public Item dequeue() {
         if (isEmpty())
-            throw new NoSuchElementException("attemp to dequeue from empty queue");
+            throw new NoSuchElementException("attempt to dequeue from empty queue");
         int index = randomIndex();
         Item item = items[index];
         // Shift elements to empty space
@@ -67,7 +66,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         return new RandomIterator(items, N);
     }
 
-    @SuppressWarnings("unchecked")
     private void resize(int size) {
         Item[] newItems = (Item[]) new Object[size];
         System.arraycopy(items, 0, newItems, 0, N);
@@ -78,7 +76,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         Item[] items;
         int i;
 
-        @SuppressWarnings("unchecked")
         RandomIterator(Item[] items, int N) {
             Item[] newItems = (Item[]) new Object[N];
             System.arraycopy(items, 0, newItems, 0, N);
