@@ -1,5 +1,5 @@
 /*
-*/
 !.gitignore
-!Percolation
-!Queues
+!Percolation/src/
+!Queues/src/
+!Puzzle8/src/
